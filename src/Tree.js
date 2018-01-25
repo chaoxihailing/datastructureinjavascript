@@ -14,6 +14,11 @@ function BST() {
     this.root = null;
     this.insert = insert;
     this.inOrder = inOrder;
+    this.preOrder = preOrder;
+    this.postOrder = postOrder;
+    this.getMin = getMin;
+    this.getMax = getMax;
+    this.remove = remove;
 }
 
 function insert(data) {
@@ -45,22 +50,11 @@ function insert(data) {
 // 中序遍历, 使用递归的方式实现
 function inOrder(node) {
     if (!(node == null)) {
-        irOrder(node.left);
+        inOrder(node.left);
         console.log(node.show() + " ");
         inOrder(node.right);
     }
 }
-
-
-var nums = new BST();
-nums.insert(23);
-nums.insert(45);
-nums.insert(16);
-nums.insert(37);
-nums.insert(3);
-nums.insert(99);
-nums.insert(22);
-inOrder(nums.root);
 
 // 先序遍历
 function preOrder(node) {
@@ -111,6 +105,7 @@ function find(data) {
     return null;
 }
 
+
 // 删除子节点
 function remove(data) {
     root = removeNode(this.root, data);
@@ -148,4 +143,37 @@ function removeNode(node, data) {
         return node;
     }
 }
+var nums = new BST();
+nums.insert(23);
+nums.insert(45);
+nums.insert(16);
+nums.insert(37);
+nums.insert(3);
+nums.insert(99);
+nums.insert(22);
+
+console.log("中序遍历")
+inOrder(nums.root);
+
+console.log("先序遍历")
+preOrder(nums.root);
+
+console.log("后序遍历")
+postOrder(nums.root);
+
+console.log("最小值")
+let min = nums.getMin();
+console.log("the minmum value of BST is: " + min);
+
+console.log("最大值")
+let max = nums.getMax();
+console.log("the maximum value of BST is: " + max);
+
+// 删除元素
+nums.remove(22);
+console.log("后序遍历")
+postOrder(nums.root);
+
+
+
 
